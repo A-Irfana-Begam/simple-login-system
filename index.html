@@ -4,43 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e8e8ed">
     <title>Simple Login System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Welcome Back</h1>
-    <p class="subtitle">Secure Login & Registration System</p>
+    <main class="page">
+        <section class="login-card">
+            <div class="brand">
+                <div class="brand-icon">S</div>
+                <span>SECURESPACE</span>
+            </div>
 
-    <div class="tabs">
-        <button id="loginTab" class="active" type="button">Login</button>
-        <button id="registerTab" type="button">Register</button>
-    </div>
+            <div class="heading">
+                <p class="eyebrow">WELCOME TO SECURESPACE</p>
+                <h1 id="formTitle">Welcome back</h1>
+                <p id="formSubtitle">Sign in to continue to your account.</p>
+            </div>
 
-    <form id="loginForm">
-        <label>Username</label>
-        <input type="text" id="loginUsername" placeholder="Enter username" required>
+            <div class="tabs">
+                <button type="button" id="loginTab" class="tab active">
+                    Login
+                </button>
+                <button type="button" id="registerTab" class="tab">
+                    Register
+                </button>
+            </div>
 
-        <label>Password</label>
-        <input type="password" id="loginPassword" placeholder="Enter password" required>
+            <form id="loginForm">
+                <label for="loginUsername">Username</label>
+                <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required
+                >
 
-        <button class="submit-btn" type="submit">Login</button>
-    </form>
+                <label for="loginPassword">Password</label>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
 
-    <form id="registerForm" class="hidden">
-        <label>Username</label>
-        <input type="text" id="registerUsername" placeholder="Create username" required>
+                <button type="submit" class="submit-btn" id="loginButton">
+                    Sign In <span>→</span>
+                </button>
+            </form>
 
-        <label>Password</label>
-        <input type="password" id="registerPassword" placeholder="Create password" required>
+            <form id="registerForm" class="hidden">
+                <label for="registerUsername">Username</label>
+                <input
+                    type="text"
+                    id="registerUsername"
+                    placeholder="Create a username"
+                    autocomplete="username"
+                    minlength="3"
+                    maxlength="30"
+                    required
+                >
 
-        <button class="submit-btn" type="submit">Create Account</button>
-    </form>
+                <label for="registerPassword">Password</label>
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Create a password (min. 6 characters)"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
 
-    <p id="message"></p>
-</div>
+                <button type="submit" class="submit-btn" id="registerButton">
+                    Create Account <span>→</span>
+                </button>
+            </form>
 
-<script src="script.js"></script>
+            <p id="message" role="status" aria-live="polite"></p>
+
+            <div class="card-footer">
+                <span class="secure-dot"></span>
+                Your credentials are securely protected
+            </div>
+        </section>
+
+        <p class="page-footer">SIMPLE LOGIN SYSTEM <span>•</span> 2026</p>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
