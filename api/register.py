@@ -44,7 +44,6 @@ class handler(BaseHTTPRequestHandler):
                 data=payload,
                 headers={
                     "apikey": key,
-                    "Authorization": "Bearer " + key,
                     "Content-Type": "application/json",
                     "Prefer": "return=minimal"
                 },
