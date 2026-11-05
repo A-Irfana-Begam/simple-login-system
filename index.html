@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#e8e8ed">
-    <title>Simple Login System</title>
+    <meta name="theme-color" content="#dedee5">
+    <title>SecureSpace | Authentication</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
 
     <main class="page">
         <section class="login-card">
@@ -18,38 +23,26 @@
             </div>
 
             <div class="heading">
-                <p class="eyebrow">WELCOME TO SECURESPACE</p>
+                <p class="eyebrow">YOUR SPACE. YOUR SECURITY.</p>
                 <h1 id="formTitle">Welcome back</h1>
-                <p id="formSubtitle">Sign in to continue to your account.</p>
+                <p id="formSubtitle">Sign in securely to continue.</p>
             </div>
 
             <div class="tabs">
-                <button type="button" id="loginTab" class="tab active">
-                    Login
-                </button>
-                <button type="button" id="registerTab" class="tab">
-                    Register
-                </button>
+                <button type="button" id="loginTab" class="tab active">Login</button>
+                <button type="button" id="registerTab" class="tab">Register</button>
             </div>
 
             <form id="loginForm">
                 <label for="loginUsername">Username</label>
-                <input
-                    type="text"
-                    id="loginUsername"
-                    placeholder="Enter your username"
-                    autocomplete="username"
-                    required
-                >
+                <input type="text" id="loginUsername"
+                       placeholder="Enter your username"
+                       autocomplete="username" required>
 
                 <label for="loginPassword">Password</label>
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Enter your password"
-                    autocomplete="current-password"
-                    required
-                >
+                <input type="password" id="loginPassword"
+                       placeholder="Enter your password"
+                       autocomplete="current-password" required>
 
                 <button type="submit" class="submit-btn" id="loginButton">
                     Sign In <span>→</span>
@@ -58,27 +51,40 @@
 
             <form id="registerForm" class="hidden">
                 <label for="registerUsername">Username</label>
-                <input
-                    type="text"
-                    id="registerUsername"
-                    placeholder="Create a username"
-                    autocomplete="username"
-                    minlength="3"
-                    maxlength="30"
-                    required
-                >
+                <input type="text" id="registerUsername"
+                       placeholder="Create a username"
+                       minlength="3" maxlength="30"
+                       autocomplete="username" required>
 
-                <label for="registerPassword">Password</label>
-                <input
-                    type="password"
-                    id="registerPassword"
-                    placeholder="Create a password (min. 6 characters)"
-                    autocomplete="new-password"
-                    minlength="6"
-                    required
-                >
+                <label for="registerPassword">Create Password</label>
+                <div class="password-wrap">
+                    <input type="password" id="registerPassword"
+                           placeholder="Create a strong password"
+                           autocomplete="new-password" required>
+                    <button type="button" id="togglePassword" class="eye-btn"
+                            aria-label="Show password">Show</button>
+                </div>
 
-                <button type="submit" class="submit-btn" id="registerButton">
+                <div class="strength-area">
+                    <div class="strength-track">
+                        <div id="strengthBar"></div>
+                    </div>
+                    <p id="strengthLabel">Password strength: Not entered</p>
+                    <ul id="passwordRules">
+                        <li data-rule="length">At least 10 characters</li>
+                        <li data-rule="upper">One uppercase letter</li>
+                        <li data-rule="lower">One lowercase letter</li>
+                        <li data-rule="number">One number</li>
+                        <li data-rule="special">One special character</li>
+                        <li data-rule="sequence">Avoid common sequences</li>
+                    </ul>
+                </div>
+
+                <button type="button" id="suggestPassword" class="suggest-btn">
+                    ✦ Suggest a strong password
+                </button>
+
+                <button type="submit" class="submit-btn" id="registerButton" disabled>
                     Create Account <span>→</span>
                 </button>
             </form>
@@ -87,11 +93,11 @@
 
             <div class="card-footer">
                 <span class="secure-dot"></span>
-                Your credentials are securely protected
+                Protected account authentication
             </div>
         </section>
 
-        <p class="page-footer">SIMPLE LOGIN SYSTEM <span>•</span> 2026</p>
+        <p class="page-footer">SECURESPACE <span>•</span> SIMPLE LOGIN SYSTEM</p>
     </main>
 
     <script src="script.js"></script>
