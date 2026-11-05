@@ -5,11 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Login System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Simple Login System</h1>
-    <p>Secure User Authentication</p>
-    <h2>Welcome!</h2>
-    <p>Login and Registration System</p>
+
+<div class="container">
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Secure Login & Registration System</p>
+
+    <div class="tabs">
+        <button id="loginTab" class="active" type="button">Login</button>
+        <button id="registerTab" type="button">Register</button>
+    </div>
+
+    <form id="loginForm">
+        <label>Username</label>
+        <input type="text" id="loginUsername" placeholder="Enter username" required>
+
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter password" required>
+
+        <button class="submit-btn" type="submit">Login</button>
+    </form>
+
+    <form id="registerForm" class="hidden">
+        <label>Username</label>
+        <input type="text" id="registerUsername" placeholder="Create username" required>
+
+        <label>Password</label>
+        <input type="password" id="registerPassword" placeholder="Create password" required>
+
+        <button class="submit-btn" type="submit">Create Account</button>
+    </form>
+
+    <p id="message"></p>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
