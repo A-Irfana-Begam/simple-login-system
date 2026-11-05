@@ -1,11 +1,41 @@
 
 import os
 import json
+import re
 import urllib.request
 import urllib.error
 import hashlib
 import secrets
 from http.server import BaseHTTPRequestHandler
+
+
+def password_is_strong(password):
+    if len(password) < 10:
+        return False
+
+    if not re.search(r"[A-Z]", password):
+        return False
+
+    if not re.search(r"[a-z]", password):
+        return False
+
+    if not re.search(r"[0-9]", password):
+        return False
+
+    if not re.search(r"[^A-Za-z0-9]", password):
+        return False
+
+    if re.search(
+        r"12345|23456|34567|45678|56789|98765|87654|76543|65432|54321|qwerty|asdfgh|zxcvbn|password",
+        password,
+        re.IGNORECASE
+    ):
+        return False
+
+    if re.search(r"(.)\1{3,}", password):
+        return False
+
+    return True
 
 
 def hash_password(password):
@@ -37,8 +67,11 @@ class handler(BaseHTTPRequestHandler):
             if len(username) < 3 or len(username) > 30:
                 return self.respond(400, "Username must be 3 to 30 characters.")
 
-            if len(password) < 6:
-                return self.respond(400, "Password must contain at least 6 characters.")
+            if not password_is_strong(password):
+                return self.respond(
+                    400,
+                    "Weak password! Use 10+ characters with uppercase, lowercase, number and special character. Avoid common sequences."
+                )
 
             supabase_url = os.environ["SUPABASE_URL"].rstrip("/")
             secret_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
@@ -75,7 +108,7 @@ class handler(BaseHTTPRequestHandler):
 
         except Exception as error:
             print("Registration error:", str(error))
-            self.respond(500, "Server configuration error. Check Vercel settings.")
+            self.respond(500, "Server configuration error.")
 
     def do_GET(self):
         self.respond(405, "Method not allowed.")
@@ -85,6 +118,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
-
-        response = json.dumps({"message": message}).encode("utf-8")
-        self.wfile.write(response)
+        self.wfile.write(
+            json.dumps({"message": message}).encode("utf-8")
+        )
