@@ -1,65 +1,92 @@
+
 const loginTab = document.getElementById("loginTab");
 const registerTab = document.getElementById("registerTab");
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const message = document.getElementById("message");
 
-loginTab.addEventListener("click", () => {
-    loginForm.classList.remove("hidden");
-    registerForm.classList.add("hidden");
-    loginTab.classList.add("active");
-    registerTab.classList.remove("active");
-    message.textContent = "";
-});
+const formTitle = document.getElementById("formTitle");
+const formSubtitle = document.getElementById("formSubtitle");
 
-registerTab.addEventListener("click", () => {
-    registerForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
-    registerTab.classList.add("active");
-    loginTab.classList.remove("active");
-    message.textContent = "";
-});
+function showMessage(text, type = "info") {
+    message.textContent = text;
+    message.className = type;
+}
 
-loginForm.addEventListener("submit", async (event) => {
+function switchTab(mode) {
+    const isLogin = mode === "login";
+
+    loginForm.classList.toggle("hidden", !isLogin);
+    registerForm.classList.toggle("hidden", isLogin);
+
+    loginTab.classList.toggle("active", isLogin);
+    registerTab.classList.toggle("active", !isLogin);
+
+    formTitle.textContent = isLogin ? "Welcome back" : "Create account";
+    formSubtitle.textContent = isLogin
+        ? "Sign in to continue to your account."
+        : "Create your account to get started.";
+
+    showMessage("");
+}
+
+loginTab.addEventListener("click", () => switchTab("login"));
+registerTab.addEventListener("click", () => switchTab("register"));
+
+async function sendRequest(endpoint, username, password, button) {
+    button.disabled = true;
+    button.textContent = "Please wait...";
+    showMessage("Connecting securely...", "info");
+
+    try {
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            showMessage(data.message || "Something went wrong.", "error");
+        } else {
+            showMessage(data.message || "Success!", "success");
+
+            if (endpoint === "/api/register") {
+                registerForm.reset();
+            }
+        }
+    } catch (error) {
+        showMessage("Unable to connect to server. Please try again.", "error");
+    } finally {
+        button.disabled = false;
+
+        if (endpoint === "/api/login") {
+            button.innerHTML = 'Sign In <span>→</span>';
+        } else {
+            button.innerHTML = 'Create Account <span>→</span>';
+        }
+    }
+}
+
+loginForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const username = document.getElementById("loginUsername").value;
+    const username = document.getElementById("loginUsername").value.trim();
     const password = document.getElementById("loginPassword").value;
+    const button = document.getElementById("loginButton");
 
-    message.textContent = "Connecting...";
-
-    try {
-        const response = await fetch("/api/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await response.json();
-        message.textContent = data.message;
-    } catch {
-        message.textContent = "Server connection failed.";
-    }
+    sendRequest("/api/login", username, password, button);
 });
 
-registerForm.addEventListener("submit", async (event) => {
+registerForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const username = document.getElementById("registerUsername").value;
+    const username = document.getElementById("registerUsername").value.trim();
     const password = document.getElementById("registerPassword").value;
+    const button = document.getElementById("registerButton");
 
-    message.textContent = "Creating account...";
-
-    try {
-        const response = await fetch("/api/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await response.json();
-        message.textContent = data.message;
-    } catch {
-        message.textContent = "Server connection failed.";
-    }
+    sendRequest("/api/register", username, password, button);
 });
