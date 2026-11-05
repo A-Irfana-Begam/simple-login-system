@@ -33,7 +33,6 @@ class handler(BaseHTTPRequestHandler):
                 url + "/rest/v1/users?" + params,
                 headers={
                     "apikey": key,
-                    "Authorization": "Bearer " + key
                 }
             )
 
