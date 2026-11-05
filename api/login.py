@@ -67,7 +67,7 @@ class handler(BaseHTTPRequestHandler):
 
         except Exception as error:
             print("Login error:", str(error))
-            self.respond(500, "Server configuration error. Check Vercel settings.")
+            self.respond(500, "Server configuration error.")
 
     def do_GET(self):
         self.respond(405, "Method not allowed.")
@@ -77,6 +77,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
-
-        response = json.dumps({"message": message}).encode("utf-8")
-        self.wfile.write(response)
+        self.wfile.write(
+            json.dumps({"message": message}).encode("utf-8")
+        )
