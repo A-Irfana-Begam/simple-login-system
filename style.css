@@ -1,7 +1,7 @@
 
-/* =========================================
-   ASH × LAVENDER AESTHETIC THEME
-========================================= */
+/* ==========================================
+   SMOKY LAVENDER × SILVER GLASS AESTHETIC
+========================================== */
 
 * {
     margin: 0;
@@ -10,14 +10,17 @@
 }
 
 :root {
-    --ink: #34343e;
-    --muted: #858592;
-    --lavender: #9186b5;
-    --lavender-dark: #71658f;
-    --line: #dedbe8;
+    --ink: #34313e;
+    --muted: #85818f;
+    --lavender: #a18bbf;
+    --lavender-dark: #75618f;
+    --line: #ded9e8;
 }
 
-/* BODY */
+html {
+    min-height: 100%;
+    background: #b9b6c2;
+}
 
 body {
     min-height: 100vh;
@@ -28,201 +31,225 @@ body {
     color: var(--ink);
 
     background:
-        radial-gradient(ellipse at 15% 15%, rgba(255,255,255,.95), transparent 38%),
-        radial-gradient(ellipse at 85% 80%, rgba(166,157,194,.42), transparent 42%),
-        linear-gradient(135deg, #c6c6ce, #e5e3eb 45%, #b9b8c4);
+        radial-gradient(ellipse at 12% 18%, #f8f7fa 0%, transparent 32%),
+        radial-gradient(ellipse at 90% 12%, rgba(184, 169, 211, .8), transparent 38%),
+        radial-gradient(ellipse at 50% 100%, rgba(143, 132, 164, .65), transparent 45%),
+        linear-gradient(135deg, #d5d3dc, #eeedf2 42%, #c0bdca 75%, #dedce5);
 }
 
-/* ANIMATED LAVENDER SILK RIBBONS */
+/* ==========================================
+   SILK RIBBON BACKGROUND
+========================================== */
 
 body::before {
     content: "";
     position: fixed;
-    inset: -35%;
-    z-index: 0;
+    inset: -45%;
+    z-index: -2;
     pointer-events: none;
 
     background:
-        radial-gradient(
-            ellipse 48% 10% at 25% 35%,
-            rgba(158, 143, 199, .52),
-            rgba(177, 165, 210, .20) 40%,
-            transparent 75%
+        linear-gradient(
+            145deg,
+            transparent 25%,
+            rgba(255,255,255,.05) 31%,
+            rgba(255,255,255,.65) 34%,
+            rgba(177,160,208,.48) 37%,
+            rgba(255,255,255,.18) 40%,
+            transparent 47%
         ),
-        radial-gradient(
-            ellipse 45% 9% at 75% 55%,
-            rgba(255, 255, 255, .82),
-            rgba(195, 187, 215, .20) 45%,
-            transparent 75%
+        linear-gradient(
+            155deg,
+            transparent 39%,
+            rgba(255,255,255,.12) 43%,
+            rgba(155,136,194,.55) 46%,
+            rgba(255,255,255,.72) 49%,
+            rgba(193,181,216,.35) 52%,
+            transparent 59%
         ),
-        radial-gradient(
-            ellipse 42% 8% at 45% 80%,
-            rgba(143, 130, 181, .42),
-            rgba(180, 171, 204, .16) 45%,
-            transparent 75%
+        linear-gradient(
+            135deg,
+            transparent 53%,
+            rgba(255,255,255,.12) 57%,
+            rgba(255,255,255,.55) 60%,
+            rgba(165,148,196,.42) 63%,
+            transparent 70%
         );
 
-    filter: blur(25px);
-    opacity: .9;
-    transform: rotate(-20deg) scale(1.15);
-    animation: lavenderFlow 20s ease-in-out infinite alternate;
+    filter: blur(22px);
+    opacity: .85;
+    transform: rotate(-15deg) scale(1.1);
+    animation: silkMovement 22s ease-in-out infinite alternate;
     will-change: transform;
 }
 
 body::after {
     content: "";
     position: fixed;
-    inset: -35%;
-    z-index: 0;
+    inset: -40%;
+    z-index: -1;
     pointer-events: none;
 
     background:
         radial-gradient(
-            ellipse 40% 3% at 30% 40%,
+            ellipse 35% 18% at 20% 30%,
             rgba(255,255,255,.85),
             transparent 75%
         ),
         radial-gradient(
-            ellipse 38% 3% at 70% 65%,
-            rgba(202,190,231,.65),
+            ellipse 32% 15% at 75% 65%,
+            rgba(174,156,210,.55),
             transparent 75%
         ),
         radial-gradient(
-            ellipse 35% 3% at 55% 20%,
-            rgba(255,255,255,.65),
+            ellipse 25% 12% at 55% 15%,
+            rgba(255,255,255,.75),
             transparent 75%
         );
 
-    filter: blur(13px);
-    opacity: .75;
-    transform: rotate(-20deg);
-    animation: lavenderShine 16s ease-in-out infinite alternate;
+    filter: blur(45px);
+    opacity: .8;
+    animation: glowMovement 17s ease-in-out infinite alternate;
     will-change: transform;
 }
 
-@keyframes lavenderFlow {
+@keyframes silkMovement {
     0% {
-        transform: translate(-5%, -3%) rotate(-20deg) scale(1.15);
+        transform: translate(-5%, -4%) rotate(-15deg) scale(1.1);
     }
 
     50% {
-        transform: translate(4%, 3%) rotate(-15deg) scale(1.22);
+        transform: translate(4%, 3%) rotate(-10deg) scale(1.18);
     }
 
     100% {
-        transform: translate(-2%, 6%) rotate(-23deg) scale(1.18);
+        transform: translate(-2%, 7%) rotate(-19deg) scale(1.13);
     }
 }
 
-@keyframes lavenderShine {
+@keyframes glowMovement {
     0% {
-        transform: translate(4%, -3%) rotate(-22deg);
-        opacity: .35;
+        transform: translate(-3%, -2%) scale(1);
     }
 
     50% {
-        transform: translate(-3%, 4%) rotate(-16deg);
-        opacity: .8;
+        transform: translate(4%, 3%) scale(1.12);
     }
 
     100% {
-        transform: translate(5%, 2%) rotate(-20deg);
-        opacity: .5;
+        transform: translate(-2%, 5%) scale(1.05);
     }
 }
 
-/* AMBIENT LIGHTS */
+/* ==========================================
+   AMBIENT LIGHTS
+========================================== */
 
 .ambient {
     position: fixed;
     pointer-events: none;
     border-radius: 50%;
+    z-index: 0;
     filter: blur(2px);
-    z-index: 1;
 }
 
 .ambient-one {
-    width: 310px;
-    height: 310px;
-    top: -100px;
-    right: 8%;
+    width: 340px;
+    height: 340px;
+    top: -110px;
+    right: 5%;
+
     background: radial-gradient(
         circle,
-        rgba(164, 155, 188, .38),
-        transparent 70%
+        rgba(170, 151, 205, .48),
+        rgba(202, 192, 222, .15) 48%,
+        transparent 72%
     );
-    animation: ambientPulse 9s ease-in-out infinite alternate;
+
+    animation: ambientFloat 12s ease-in-out infinite alternate;
 }
 
 .ambient-two {
-    width: 380px;
-    height: 380px;
-    bottom: -160px;
-    left: -90px;
+    width: 420px;
+    height: 420px;
+    bottom: -180px;
+    left: -100px;
+
     background: radial-gradient(
         circle,
-        rgba(255, 255, 255, .8),
-        transparent 70%
+        rgba(255,255,255,.85),
+        rgba(216,211,229,.25) 48%,
+        transparent 72%
     );
-    animation: ambientPulse 12s ease-in-out infinite alternate-reverse;
+
+    animation: ambientFloat 15s ease-in-out infinite alternate-reverse;
 }
 
 .ambient-three {
-    width: 190px;
-    height: 190px;
-    top: 48%;
-    right: 5%;
+    width: 240px;
+    height: 240px;
+    top: 40%;
+    right: 3%;
+
     background: radial-gradient(
         circle,
-        rgba(173, 169, 190, .3),
-        transparent 70%
+        rgba(164,146,198,.38),
+        transparent 72%
     );
+
+    animation: ambientFloat 10s ease-in-out infinite alternate;
 }
 
-@keyframes ambientPulse {
+@keyframes ambientFloat {
     from {
-        transform: scale(.9);
-        opacity: .55;
+        transform: translate3d(0, 0, 0) scale(.9);
     }
 
     to {
-        transform: scale(1.15);
-        opacity: 1;
+        transform: translate3d(-25px, 30px, 0) scale(1.12);
     }
 }
 
-/* ORBIT SHAPES */
+/* ==========================================
+   GLASS ORBITS
+========================================== */
 
 .orbit {
     position: fixed;
     pointer-events: none;
-    border: 1px solid rgba(255,255,255,.65);
     border-radius: 50%;
-    z-index: 1;
+    z-index: 0;
+    border: 1px solid rgba(255,255,255,.65);
+
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,.14),
+        0 0 25px rgba(255,255,255,.12);
 }
 
 .orbit-one {
-    width: 430px;
-    height: 430px;
-    top: -210px;
-    left: -150px;
-    box-shadow: 0 0 35px rgba(255,255,255,.16);
+    width: 470px;
+    height: 470px;
+    top: -230px;
+    left: -160px;
+    transform: rotate(-25deg);
 }
 
 .orbit-two {
-    width: 520px;
-    height: 520px;
-    bottom: -330px;
-    right: -180px;
-    box-shadow: 0 0 35px rgba(157,145,190,.15);
+    width: 560px;
+    height: 560px;
+    bottom: -350px;
+    right: -200px;
+    transform: rotate(20deg);
 }
 
-/* PAGE */
+/* ==========================================
+   PAGE
+========================================== */
 
 .page {
     min-height: 100vh;
     position: relative;
-    z-index: 2;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -230,37 +257,44 @@ body::after {
     padding: 35px 18px;
 }
 
-/* LOGIN CARD */
+/* ==========================================
+   LOGIN CARD
+========================================== */
 
 .login-card {
     width: 100%;
     max-width: 440px;
     padding: 38px;
-    border-radius: 24px;
+    border-radius: 26px;
 
-    background: rgba(249, 248, 252, .78);
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.84),
+        rgba(244,241,250,.72)
+    );
+
     border: 1px solid rgba(255,255,255,.95);
 
     box-shadow:
-        0 25px 75px rgba(55, 52, 70, .14),
-        0 5px 25px rgba(145, 132, 181, .10),
-        inset 0 1px 0 rgba(255,255,255,.9);
+        0 30px 85px rgba(63,53,83,.17),
+        0 8px 28px rgba(139,119,177,.12),
+        inset 0 1px 0 rgba(255,255,255,.95);
 
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 
-    animation: appear .6s ease;
+    animation: appear .7s ease;
 }
 
 @keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(22px) scale(.98);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -285,8 +319,11 @@ body::after {
     color: white;
     font-size: 17px;
 
-    background: linear-gradient(135deg, #aaa2bf, #70658f);
-    box-shadow: 0 5px 16px rgba(112,101,143,.28);
+    background: linear-gradient(135deg, #b9a9d4, #76628f);
+
+    box-shadow:
+        0 5px 15px rgba(112,101,143,.28),
+        inset 0 1px 2px rgba(255,255,255,.4);
 }
 
 /* HEADING */
@@ -322,7 +359,7 @@ body::after {
     padding: 5px;
     margin-bottom: 25px;
     border-radius: 11px;
-    background: #e9e7ef;
+    background: rgba(224,220,234,.75);
 }
 
 .tab {
@@ -339,8 +376,8 @@ body::after {
 
 .tab.active {
     color: var(--lavender-dark);
-    background: #fff;
-    box-shadow: 0 3px 12px rgba(45,40,60,.08);
+    background: rgba(255,255,255,.95);
+    box-shadow: 0 3px 14px rgba(45,40,60,.09);
 }
 
 /* FORM */
@@ -361,16 +398,18 @@ form input {
     border: 1px solid var(--line);
     border-radius: 9px;
     outline: none;
-    background: rgba(250,250,253,.9);
+    background: rgba(250,249,253,.9);
     color: var(--ink);
     font-size: 13px;
-    transition: .2s;
+    transition: .25s;
 }
 
 form input:focus {
-    border-color: #9990b7;
+    border-color: #a99ac9;
     background: white;
-    box-shadow: 0 0 0 3px rgba(137,128,170,.15);
+    box-shadow:
+        0 0 0 3px rgba(155,137,192,.14),
+        0 4px 15px rgba(155,137,192,.08);
 }
 
 form input::placeholder {
@@ -410,7 +449,7 @@ form input::placeholder {
     height: 6px;
     overflow: hidden;
     border-radius: 10px;
-    background: #e5e2ec;
+    background: #e9e6ef;
 }
 
 #strengthBar {
@@ -460,19 +499,20 @@ form input::placeholder {
     width: 100%;
     padding: 11px;
     margin: 0 0 17px;
-    border: 1px solid #d5cfe3;
+    border: 1px solid #d9d1e8;
     border-radius: 9px;
-    background: #efedf5;
+    background: rgba(238,234,246,.85);
     color: var(--lavender-dark);
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
-    transition: .2s;
+    transition: .25s;
 }
 
 .suggest-btn:hover {
-    background: #e5e0ef;
-    border-color: #b5a9d0;
+    background: #e7e0f1;
+    border-color: #b9a9d4;
+    box-shadow: 0 5px 15px rgba(112,101,143,.10);
 }
 
 /* SUBMIT BUTTON */
@@ -487,18 +527,20 @@ form input::placeholder {
     border: 0;
     border-radius: 9px;
 
-    background: linear-gradient(110deg, #9990b8, #70658f);
+    background: linear-gradient(110deg, #a294c1, #71618f);
     color: white;
 
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
-    transition: .2s;
+    transition: .25s;
+
+    box-shadow: 0 5px 15px rgba(112,101,143,.15);
 }
 
 .submit-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(112,101,143,.3);
+    box-shadow: 0 10px 23px rgba(112,101,143,.28);
 }
 
 .submit-btn:disabled {
@@ -545,7 +587,7 @@ form input::placeholder {
     gap: 8px;
     padding-top: 19px;
     margin-top: 22px;
-    border-top: 1px solid #e8e5ed;
+    border-top: 1px solid #e9e5ef;
     color: #92909b;
     font-size: 10px;
 }
@@ -608,7 +650,7 @@ form input::placeholder {
     margin-top: 25px;
     padding: 13px 25px;
     border-radius: 9px;
-    background: linear-gradient(110deg, #9990b8, #70658f);
+    background: linear-gradient(110deg, #a294c1, #71618f);
     color: white;
     text-decoration: none;
     font-size: 12px;
@@ -636,6 +678,26 @@ form input::placeholder {
     #passwordRules {
         grid-template-columns: 1fr 1fr;
     }
+
+    .ambient-one {
+        width: 230px;
+        height: 230px;
+    }
+
+    .ambient-two {
+        width: 280px;
+        height: 280px;
+    }
+
+    .orbit-one {
+        width: 300px;
+        height: 300px;
+    }
+
+    .orbit-two {
+        width: 350px;
+        height: 350px;
+    }
 }
 
 /* ACCESSIBILITY */
@@ -645,6 +707,7 @@ form input::placeholder {
     body::after,
     .ambient-one,
     .ambient-two,
+    .ambient-three,
     .login-card {
         animation: none;
     }
